@@ -1,0 +1,33 @@
+# Node.js specific
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Logs
+logs/
+*.log
+
+# Environment variables
+.env
+
+# Build artifacts
+dist/
+
+# Database
+*.sqlite
+*.sqlite3
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Coverage
+coverage/
