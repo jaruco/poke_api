@@ -29,7 +29,10 @@ class PokemonController {
       const result = await PokemonService.getAllPokemons(page, limit);
       res.json({
         success: true,
-        data: result
+        data: result.pokemons,
+        total: result.total,
+        totalPages: result.totalPages, 
+        currentPage: result.currentPage
       });
     } catch (error) {
       next(error);

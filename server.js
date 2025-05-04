@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
+const morgan = require('morgan');
 const pokemonRoutes = require('./src/routes/pokemonRoutes');
 const errorHandler = require('./src/middleware/errorHandler');
 
@@ -31,10 +32,11 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:4321', // URL de tu aplicación Astro
+  origin: 'http://localhost:5173', // URL de tu aplicación
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }));
+app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

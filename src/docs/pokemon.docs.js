@@ -9,7 +9,6 @@
  *         - types
  *         - height
  *         - weight
- *         - abilities
  *       properties:
  *         id:
  *           type: integer
@@ -28,11 +27,6 @@
  *         weight:
  *           type: number
  *           description: Peso del pokemon
- *         abilities:
- *           type: array
- *           items:
- *             type: string
- *           description: Habilidades del pokemon
  *         frontSprite:
  *           type: string
  *           description: Sprite frontal del pokemon
@@ -40,6 +34,8 @@
  *           type: string
  *           description: Sprite posterior del pokemon
  *         officialArtwork:
+ *           type: string
+ *           description: URL del artwork oficial del pokemon
  * 
  *   responses:
  *     NotFound:
@@ -111,6 +107,19 @@
  *   get:
  *     summary: Obtener todos los pokemon
  *     tags: [Pokemon]
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: Número de la página a consultar.
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 20
+ *         description: Cantidad de Pokémon a devolver por página.
  *     responses:
  *       200:
  *         description: Lista de todos los pokemon
@@ -121,10 +130,21 @@
  *               properties:
  *                 success:
  *                   type: boolean
+ *                   description: Indica si la operación fue exitosa.
  *                 data:
  *                   type: array
  *                   items:
  *                     $ref: '#/components/schemas/Pokemon'
+ *                   description: Lista de Pokémon en la página actual.
+ *                 total:
+ *                   type: integer
+ *                   description: Número total de Pokémon disponibles.
+ *                 totalPages:
+ *                   type: integer
+ *                   description: Número total de páginas disponibles.
+ *                 currentPage:
+ *                   type: integer
+ *                   description: Página actual de los resultados.
  */
 
 /**

@@ -30,7 +30,8 @@ class PokemonService {
     const { count, rows } = await Pokemon.findAndCountAll({
       limit,
       offset,
-      order: [['id', 'ASC']]
+      order: [['id', 'ASC']],
+      attributes: ['id', 'name', 'types', 'height', 'weight', ['front_sprite', 'frontSprite'], ['back_sprite', 'backSprite'], ['official_artwork', 'officialArtwork']] 
     });
     return {
       pokemons: rows,
