@@ -31,3 +31,6 @@ Thumbs.db
 
 # Coverage
 coverage/
+
+# Lock files
+package-lock.json
