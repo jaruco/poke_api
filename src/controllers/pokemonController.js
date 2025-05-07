@@ -51,6 +51,33 @@ class PokemonController {
     }
   }
 
+  static async getPokemonByName(req, res, next) {
+    try {
+      console.log("calling method", req.query.name);
+      const { name } = req.query;
+      if (!name) {
+        return res.status(400).json({
+          success: false,
+          message: 'Pokemon name is required'
+        });
+      }
+
+      const pokemon = await PokemonService.getPokemonByName(name);
+      res.json({
+        success: true,
+        data: pokemon
+      });
+    } catch (error) {
+      if (error.message === 'Pokemon not found') {
+        return res.status(404).json({
+          success: false,
+          message: error.message
+        });
+      }
+      next(error);
+    }
+  }
+
   static async updatePokemon(req, res, next) {
     try {
       const { pokemonName } = req.body;

@@ -49,6 +49,20 @@ class PokemonService {
     return pokemon;
   }
 
+  static async getPokemonByName(name) {
+    console.log("name input", name);
+    const pokemon = await Pokemon.findOne({
+      where: { name: name.toLowerCase() },
+      attributes: ['id', 'name', 'types', 'height', 'weight', ['front_sprite', 'frontSprite'], ['back_sprite', 'backSprite'], ['official_artwork', 'officialArtwork']]
+    });
+    console.log("pokemon result", pokemon);
+    if (!pokemon) {
+      throw new Error('Pokemon not found');
+    }
+
+    return pokemon;
+  }
+
   static async updatePokemon(id, pokemonName) {
     const pokemon = await Pokemon.findByPk(id);
     if (!pokemon) {

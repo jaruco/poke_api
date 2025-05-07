@@ -166,6 +166,60 @@
  *         $ref: '#/components/responses/NotFound'
  */
 
+/**
+ * @swagger
+ * /api/pokemon/search:
+ *   get:
+ *     summary: Search for a Pokémon by name
+ *     tags: [Pokemon]
+ *     parameters:
+ *       - in: query
+ *         name: name
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The name of the Pokémon to search for.
+ *     responses:
+ *       200:
+ *         description: Pokémon found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Indicates if the operation was successful.
+ *                 data:
+ *                   $ref: '#/components/schemas/Pokemon'
+ *       400:
+ *         description: Missing or invalid Pokémon name
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Pokemon name is required
+ *       404:
+ *         description: Pokémon not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Pokemon not found
+ */
+
 module.exports = {
     // Este objeto vacío es necesario para que el archivo sea un módulo válido
     // La documentación será leída por swagger-jsdoc desde los comentarios
